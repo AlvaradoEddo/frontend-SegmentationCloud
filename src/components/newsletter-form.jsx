@@ -25,11 +25,10 @@ export function NewsletterForm({ className, onSubmit, submitBtn }) {
     data.append('files', file);
     setSuccess(true)
     fetch("http://localhost:8000/uploadfile/", {
-      mode: 'no-cors',
       method: "POST",
-      body: data, 
-      redirect: 'follow'
-    }).then((response) => {response.text()
+      body: data,
+    }).then((response) => {
+      console.log(response)
       console.log("prueba de success")
       setSuccess(false)
       navigate("/image")
