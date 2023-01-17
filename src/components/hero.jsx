@@ -31,6 +31,7 @@ export function Hero({ title, content, illustration }) {
   }
 
   return (
+    
     <section className="text-center lg:w-full lg:py-20 lg:text-left">
       <div className="hero mx-auto w-full max-w-6xl px-6">
         <div className="hero-inner relative lg:flex">

@@ -1,8 +1,11 @@
 import React from 'react'
 import classnames from 'clsx'
 import { useNavigate } from 'react-router-dom';
+import ReactLoading from 'react-loading';
 
 const imageMimeType = /image\/(png|jpg|jpeg|tif)/i;
+
+export const responseModel = {};
 
 export function NewsletterForm({ className, onSubmit, submitBtn }) {
   const navigate = useNavigate();
@@ -13,25 +16,31 @@ export function NewsletterForm({ className, onSubmit, submitBtn }) {
 
 
   async function handleSubmit(event) {
+
     event.preventDefault()
     const result = await onSubmit(file)
     console.log(result)
 
-    
-    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-    xhr.addEventListener("readystatechange", function() {
-      if(this.readyState === 4) {
-        console.log(this.responseText);
-      }
-    });
-    xhr.open('POST', 'localhost:8000/uploadfile', true);
     var data = new FormData();
-    data.append("file", file);
-    xhr.send(file);
+    data.append('files', file);
+    setSuccess(true)
+    fetch("http://localhost:8000/uploadfile/", {
+      mode: 'no-cors',
+      method: "POST",
+      body: data, 
+      redirect: 'follow'
+    }).then((response) => {response.text()
+      console.log("prueba de success")
+      setSuccess(false)
+      navigate("/image")
+      this.responseModel = "prueba de respponse model"
+    })
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
 
     setFile('')
-    setSuccess(true)
-    navigate("/image")
+    
+   
   }
 
   function handleChange(event) {
@@ -69,6 +78,7 @@ export function NewsletterForm({ className, onSubmit, submitBtn }) {
     <>
     <form
       onSubmit={handleSubmit}
+      encType="multipart/form-data"
       className={classnames('newsletter-form is-revealing md:flex', className)}
     >
       <div className="mr-2 flex-shrink flex-grow">
@@ -93,6 +103,9 @@ export function NewsletterForm({ className, onSubmit, submitBtn }) {
             Imagen subida con Exito!
           </div>
         )} */}
+
+        { !success ? null : <ReactLoading type={"cubes"} color={"#000000"} height={667} width={375} />}
+
       </div>
 
       <div className="control">
@@ -104,12 +117,6 @@ export function NewsletterForm({ className, onSubmit, submitBtn }) {
         </button>
       </div>
     </form>
-    {fileDataURL ?
-      <p className="img-preview-wrapper">
-        {
-          <img src={fileDataURL} alt="preview" />
-        }
-      </p> : null}
       </>
 
   )

@@ -1392,9 +1392,6 @@ select {
 .rounded-sm {
   border-radius: 0.125rem;
 }
-.rounded {
-  border-radius: 0.25rem;
-}
 .border {
   border-width: 1px;
 }
@@ -1474,14 +1471,6 @@ select {
   padding-left: 1.75rem;
   padding-right: 1.75rem;
 }
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-.py-px {
-  padding-top: 1px;
-  padding-bottom: 1px;
-}
 .pb-16 {
   padding-bottom: 4rem;
 }
@@ -1493,9 +1482,6 @@ select {
 }
 .pt-10 {
   padding-top: 2.5rem;
-}
-.pt-5 {
-  padding-top: 1.25rem;
 }
 .text-center {
   text-align: center;
@@ -1823,10 +1809,6 @@ select {
   .lg\:p-0 {
     padding: 0px;
   }
-  .lg\:py-20 {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
   .lg\:prose-xl :where(tbody td:first-child, tfoot td:first-child):not(:where([class~="not-prose"] *)) {
     padding-left: 0;
   }
@@ -1837,6 +1819,10 @@ select {
   .lg\:py-0 {
     padding-top: 0px;
     padding-bottom: 0px;
+  }
+  .lg\:py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
   }
   .lg\:pt-16 {
     padding-top: 4rem;

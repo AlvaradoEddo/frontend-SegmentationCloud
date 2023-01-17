@@ -2,7 +2,7 @@ import React from 'react'
 
 export function Article({ children }) {
   return (
-    <article className="article text-center lg:w-full lg:py-20 lg:text-left">
+    <article className="article text-center lg:w-full lg:text-left">
       <div className="mx-auto w-full max-w-6xl px-6">
         <div className="relative lg:flex">{children}</div>
       </div>
